@@ -9,24 +9,52 @@
             font-family: 'Open Sans', sans-serif;
             font-size: 14px;
             background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
         }
+
         table {
-            width: 100%;
+            width: 70%;
             border-collapse: collapse;
             margin-bottom: 20px;
             background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
         }
+
         th, td {
             border: 1px solid #ccc;
             padding: 15px;
             text-align: center;
             transition: background-color 0.2s;
         }
+
         th {
             background-color: #333;
             color: white;
+            font-size: 16px;
         }
+
+        td {
+            background-color: #fafafa;
+            min-width: 120px;
+        }
+
+        .aspect {
+            width: 200px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
         .button {
             background-color: #2196F3;
             color: white;
@@ -37,22 +65,27 @@
             display: inline-block;
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
+            transition: transform 0.2s, opacity 0.3s;
         }
+
         .button:hover {
             background-color: #1976D2;
         }
+
         .correct {
             background-color: green;
             color: white;
         }
+
         .incorrect {
             background-color: red;
             color: white;
         }
+
         .jiggle {
             animation: jiggle 0.3s ease-in-out;
         }
+
         @keyframes jiggle {
             0% { transform: translateX(0); }
             25% { transform: translateX(-5px); }
@@ -68,73 +101,73 @@
 
 <table>
     <tr>
-        <th>Aspect</th>
+        <th class="aspect">Aspect</th>
         <th>Criminal Law</th>
         <th>Civil Law</th>
     </tr>
     <tr>
-        <td>Who is Accused?</td>
+        <td class="aspect">Who is Accused?</td>
         <td id="c1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         <td id="c2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
-        <td>Who Brings the Case?</td>
+        <td class="aspect">Who Brings the Case?</td>
         <td id="c3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         <td id="c4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
-        <td>Purpose of the Case</td>
+        <td class="aspect">Purpose of the Case</td>
         <td id="c5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         <td id="c6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
-        <td>Burden of Proof</td>
+        <td class="aspect">Burden of Proof</td>
         <td id="c7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         <td id="c8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
-        <td>Standard of Evidence</td>
+        <td class="aspect">Standard of Evidence</td>
         <td id="c9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         <td id="c10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
-        <td>Potential Outcomes</td>
+        <td class="aspect">Potential Outcomes</td>
         <td id="c11" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         <td id="c12" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
-        <td>Rights of the Defendant</td>
+        <td class="aspect">Rights of the Defendant</td>
         <td id="c13" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         <td id="c14" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
-        <td>Nature of the Harm</td>
+        <td class="aspect">Nature of the Harm</td>
         <td id="c15" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         <td id="c16" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
-        <td>Example of Penalties/Remedies</td>
+        <td class="aspect">Example of Penalties/Remedies</td>
         <td id="c17" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         <td id="c18" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
-        <td>Appeals Process</td>
+        <td class="aspect">Appeals Process</td>
         <td id="c19" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         <td id="c20" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
-        <td>Public vs. Private</td>
+        <td class="aspect">Public vs. Private</td>
         <td id="c21" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         <td id="c22" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
-        <td>Impact of Outcome</td>
+        <td class="aspect">Impact of Outcome</td>
         <td id="c23" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         <td id="c24" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
 </table>
 
-<div id="options">
+<div id="options" class="button-container">
     <div id="d1" class="button" draggable="true" ondragstart="drag(event)">Defendant</div>
     <div id="d2" class="button" draggable="true" ondragstart="drag(event)">Prosecution</div>
     <div id="d3" class="button" draggable="true" ondragstart="drag(event)">Plaintiff</div>
@@ -158,6 +191,9 @@
     <div id="d21" class="button" draggable="true" ondragstart="drag(event)">Financial/equitable remedies</div>
 </div>
 
+<audio id="correctSound" src="https://www.myinstants.com/media/sounds/correct-answer-ding.mp3"></audio>
+<audio id="incorrectSound" src="https://www.myinstants.com/media/sounds/incorrect-buzzer.mp3"></audio>
+
 <script>
     function allowDrop(ev) {
         ev.preventDefault();
@@ -174,17 +210,23 @@
         var target = ev.target;
 
         if (target.tagName === "TD" && target.innerHTML === "") {
-            target.appendChild(element);
-            element.classList.add('jiggle');
-
-            setTimeout(function () {
-                element.classList.remove('jiggle');
-            }, 500);
-
             if (checkAnswer(target.id, data)) {
+                target.appendChild(element);
+                element.classList.add('jiggle');
+                document.getElementById('correctSound').play();
+
+                setTimeout(function () {
+                    element.classList.remove('jiggle');
+                }, 500);
+
                 target.className = "correct";
             } else {
-                target.className = "incorrect";
+                document.getElementById('incorrectSound').play();
+                element.style.opacity = 0;
+                setTimeout(function() {
+                    element.style.opacity = 1;
+                    document.getElementById('options').appendChild(element);
+                }, 500);
             }
         }
     }
