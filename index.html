@@ -8,28 +8,39 @@
         body {
             font-family: 'Open Sans', sans-serif;
             font-size: 14px;
+            background-color: #f4f4f9;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         th, td {
-            border: 1px solid black;
-            padding: 10px;
+            border: 1px solid #ccc;
+            padding: 15px;
             text-align: center;
+            transition: background-color 0.2s;
         }
         th {
-            background-color: black;
+            background-color: #333;
             color: white;
         }
         .button {
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            padding: 5px;
-            margin: 5px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
             cursor: pointer;
             display: inline-block;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .button:hover {
+            background-color: #1976D2;
         }
         .correct {
             background-color: green;
@@ -38,6 +49,16 @@
         .incorrect {
             background-color: red;
             color: white;
+        }
+        .jiggle {
+            animation: jiggle 0.3s ease-in-out;
+        }
+        @keyframes jiggle {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
         }
     </style>
 </head>
@@ -53,124 +74,122 @@
     </tr>
     <tr>
         <td>Who is Accused?</td>
-        <td id="c1" onclick="placeAnswer('c1')"></td>
-        <td id="c2" onclick="placeAnswer('c2')"></td>
+        <td id="c1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <td id="c2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
         <td>Who Brings the Case?</td>
-        <td id="c3" onclick="placeAnswer('c3')"></td>
-        <td id="c4" onclick="placeAnswer('c4')"></td>
+        <td id="c3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <td id="c4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
         <td>Purpose of the Case</td>
-        <td id="c5" onclick="placeAnswer('c5')"></td>
-        <td id="c6" onclick="placeAnswer('c6')"></td>
+        <td id="c5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <td id="c6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
         <td>Burden of Proof</td>
-        <td id="c7" onclick="placeAnswer('c7')"></td>
-        <td id="c8" onclick="placeAnswer('c8')"></td>
+        <td id="c7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <td id="c8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
         <td>Standard of Evidence</td>
-        <td id="c9" onclick="placeAnswer('c9')"></td>
-        <td id="c10" onclick="placeAnswer('c10')"></td>
+        <td id="c9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <td id="c10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
         <td>Potential Outcomes</td>
-        <td id="c11" onclick="placeAnswer('c11')"></td>
-        <td id="c12" onclick="placeAnswer('c12')"></td>
+        <td id="c11" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <td id="c12" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
         <td>Rights of the Defendant</td>
-        <td id="c13" onclick="placeAnswer('c13')"></td>
-        <td id="c14" onclick="placeAnswer('c14')"></td>
+        <td id="c13" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <td id="c14" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
         <td>Nature of the Harm</td>
-        <td id="c15" onclick="placeAnswer('c15')"></td>
-        <td id="c16" onclick="placeAnswer('c16')"></td>
+        <td id="c15" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <td id="c16" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
         <td>Example of Penalties/Remedies</td>
-        <td id="c17" onclick="placeAnswer('c17')"></td>
-        <td id="c18" onclick="placeAnswer('c18')"></td>
+        <td id="c17" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <td id="c18" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
         <td>Appeals Process</td>
-        <td id="c19" onclick="placeAnswer('c19')"></td>
-        <td id="c20" onclick="placeAnswer('c20')"></td>
+        <td id="c19" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <td id="c20" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
         <td>Public vs. Private</td>
-        <td id="c21" onclick="placeAnswer('c21')"></td>
-        <td id="c22" onclick="placeAnswer('c22')"></td>
+        <td id="c21" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <td id="c22" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
         <td>Impact of Outcome</td>
-        <td id="c23" onclick="placeAnswer('c23')"></td>
-        <td id="c24" onclick="placeAnswer('c24')"></td>
+        <td id="c23" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <td id="c24" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
 </table>
 
 <div id="options">
-    <div id="d1" class="button" onclick="selectAnswer('d1')">Defendant</div>
-    <div id="d2" class="button" onclick="selectAnswer('d2')">Prosecution</div>
-    <div id="d3" class="button" onclick="selectAnswer('d3')">Plaintiff</div>
-    <div id="d4" class="button" onclick="selectAnswer('d4')">Punishment for wrongdoing</div>
-    <div id="d5" class="button" onclick="selectAnswer('d5')">Compensation or remedy</div>
-    <div id="d6" class="button" onclick="selectAnswer('d6')">Beyond a reasonable doubt</div>
-    <div id="d7" class="button" onclick="selectAnswer('d7')">Balance of probabilities</div>
-    <div id="d8" class="button" onclick="selectAnswer('d8')">Imprisonment, fines</div>
-    <div id="d9" class="button" onclick="selectAnswer('d9')">Damages, injunctions</div>
-    <div id="d10" class="button" onclick="selectAnswer('d10')">Right to a fair trial, legal counsel</div>
-    <div id="d11" class="button" onclick="selectAnswer('d11')">Right to defend the claim</div>
-    <div id="d12" class="button" onclick="selectAnswer('d12')">Offense against society</div>
-    <div id="d13" class="button" onclick="selectAnswer('d13')">Harm to individual or entity</div>
-    <div id="d14" class="button" onclick="selectAnswer('d14')">Jail, fines, probation</div>
-    <div id="d15" class="button" onclick="selectAnswer('d15')">Monetary damages, injunctions</div>
-    <div id="d16" class="button" onclick="selectAnswer('d16')">Appeals for both sides</div>
-    <div id="d17" class="button" onclick="selectAnswer('d17')">Legal errors</div>
-    <div id="d18" class="button" onclick="selectAnswer('d18')">Public proceedings</div>
-    <div id="d19" class="button" onclick="selectAnswer('d19')">Private disputes</div>
-    <div id="d20" class="button" onclick="selectAnswer('d20')">Criminal record, loss of rights</div>
-    <div id="d21" class="button" onclick="selectAnswer('d21')">Financial/equitable remedies</div>
+    <div id="d1" class="button" draggable="true" ondragstart="drag(event)">Defendant</div>
+    <div id="d2" class="button" draggable="true" ondragstart="drag(event)">Prosecution</div>
+    <div id="d3" class="button" draggable="true" ondragstart="drag(event)">Plaintiff</div>
+    <div id="d4" class="button" draggable="true" ondragstart="drag(event)">Punishment for wrongdoing</div>
+    <div id="d5" class="button" draggable="true" ondragstart="drag(event)">Compensation or remedy</div>
+    <div id="d6" class="button" draggable="true" ondragstart="drag(event)">Beyond a reasonable doubt</div>
+    <div id="d7" class="button" draggable="true" ondragstart="drag(event)">Balance of probabilities</div>
+    <div id="d8" class="button" draggable="true" ondragstart="drag(event)">Imprisonment, fines</div>
+    <div id="d9" class="button" draggable="true" ondragstart="drag(event)">Damages, injunctions</div>
+    <div id="d10" class="button" draggable="true" ondragstart="drag(event)">Right to a fair trial, legal counsel</div>
+    <div id="d11" class="button" draggable="true" ondragstart="drag(event)">Right to defend the claim</div>
+    <div id="d12" class="button" draggable="true" ondragstart="drag(event)">Offense against society</div>
+    <div id="d13" class="button" draggable="true" ondragstart="drag(event)">Harm to individual or entity</div>
+    <div id="d14" class="button" draggable="true" ondragstart="drag(event)">Jail, fines, probation</div>
+    <div id="d15" class="button" draggable="true" ondragstart="drag(event)">Monetary damages, injunctions</div>
+    <div id="d16" class="button" draggable="true" ondragstart="drag(event)">Appeals for both sides</div>
+    <div id="d17" class="button" draggable="true" ondragstart="drag(event)">Legal errors</div>
+    <div id="d18" class="button" draggable="true" ondragstart="drag(event)">Public proceedings</div>
+    <div id="d19" class="button" draggable="true" ondragstart="drag(event)">Private disputes</div>
+    <div id="d20" class="button" draggable="true" ondragstart="drag(event)">Criminal record, loss of rights</div>
+    <div id="d21" class="button" draggable="true" ondragstart="drag(event)">Financial/equitable remedies</div>
 </div>
 
 <script>
-    var selectedAnswer = "";
-
-    function selectAnswer(id) {
-        selectedAnswer = id;
-        var options = document.querySelectorAll('.button');
-        options.forEach(option => option.style.border = '1px solid #ccc'); // Reset borders
-        document.getElementById(id).style.border = '2px solid blue'; // Highlight selected button
+    function allowDrop(ev) {
+        ev.preventDefault();
     }
 
-    function placeAnswer(targetId) {
-        if (selectedAnswer === "") {
-            alert("Please select an answer first.");
-            return;
-        }
-
-        var element = document.getElementById(selectedAnswer);
-        var target = document.getElementById(targetId);
-
-        if (checkAnswer(targetId, selectedAnswer)) {
-            target.innerHTML = element.innerHTML;
-            target.className = "correct";
-        } else {
-            target.innerHTML = element.innerHTML;
-            target.className = "incorrect";
-        }
-
-        // Deselect answer after placing
-        selectedAnswer = "";
-        var options = document.querySelectorAll('.button');
-        options.forEach(option => option.style.border = '1px solid #ccc'); // Reset borders
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
     }
 
-    function checkAnswer(targetId, answerId) {
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        var element = document.getElementById(data);
+        var target = ev.target;
+
+        if (target.tagName === "TD" && target.innerHTML === "") {
+            target.appendChild(element);
+            element.classList.add('jiggle');
+
+            setTimeout(function () {
+                element.classList.remove('jiggle');
+            }, 500);
+
+            if (checkAnswer(target.id, data)) {
+                target.className = "correct";
+            } else {
+                target.className = "incorrect";
+            }
+        }
+    }
+
+    function checkAnswer(targetId, dragId) {
         const correctAnswers = {
             c1: "d1",
             c2: "d1",
@@ -197,10 +216,9 @@
             c23: "d20",
             c24: "d21"
         };
-        return correctAnswers[targetId] === answerId;
+        return correctAnswers[targetId] === dragId;
     }
 </script>
 
 </body>
 </html>
-
