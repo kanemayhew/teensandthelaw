@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criminal vs. Civil Law Game</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: black;
+            color: white;
+        }
+        .button {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 5px;
+            margin: 5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .correct {
+            background-color: green;
+            color: white;
+        }
+        .incorrect {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Match the Aspects of Criminal and Civil Law</h2>
+
+<table>
+    <tr>
+        <th>Aspect</th>
+        <th>Criminal Law</th>
+        <th>Civil Law</th>
+    </tr>
+    <tr>
+        <td>Who is Accused?</td>
+        <td id="c1" onclick="placeAnswer('c1')"></td>
+        <td id="c2" onclick="placeAnswer('c2')"></td>
+    </tr>
+    <tr>
+        <td>Who Brings the Case?</td>
+        <td id="c3" onclick="placeAnswer('c3')"></td>
+        <td id="c4" onclick="placeAnswer('c4')"></td>
+    </tr>
+    <tr>
+        <td>Purpose of the Case</td>
+        <td id="c5" onclick="placeAnswer('c5')"></td>
+        <td id="c6" onclick="placeAnswer('c6')"></td>
+    </tr>
+    <tr>
+        <td>Burden of Proof</td>
+        <td id="c7" onclick="placeAnswer('c7')"></td>
+        <td id="c8" onclick="placeAnswer('c8')"></td>
+    </tr>
+    <tr>
+        <td>Standard of Evidence</td>
+        <td id="c9" onclick="placeAnswer('c9')"></td>
+        <td id="c10" onclick="placeAnswer('c10')"></td>
+    </tr>
+    <tr>
+        <td>Potential Outcomes</td>
+        <td id="c11" onclick="placeAnswer('c11')"></td>
+        <td id="c12" onclick="placeAnswer('c12')"></td>
+    </tr>
+    <tr>
+        <td>Rights of the Defendant</td>
+        <td id="c13" onclick="placeAnswer('c13')"></td>
+        <td id="c14" onclick="placeAnswer('c14')"></td>
+    </tr>
+    <tr>
+        <td>Nature of the Harm</td>
+        <td id="c15" onclick="placeAnswer('c15')"></td>
+        <td id="c16" onclick="placeAnswer('c16')"></td>
+    </tr>
+    <tr>
+        <td>Example of Penalties/Remedies</td>
+        <td id="c17" onclick="placeAnswer('c17')"></td>
+        <td id="c18" onclick="placeAnswer('c18')"></td>
+    </tr>
+    <tr>
+        <td>Appeals Process</td>
+        <td id="c19" onclick="placeAnswer('c19')"></td>
+        <td id="c20" onclick="placeAnswer('c20')"></td>
+    </tr>
+    <tr>
+        <td>Public vs. Private</td>
+        <td id="c21" onclick="placeAnswer('c21')"></td>
+        <td id="c22" onclick="placeAnswer('c22')"></td>
+    </tr>
+    <tr>
+        <td>Impact of Outcome</td>
+        <td id="c23" onclick="placeAnswer('c23')"></td>
+        <td id="c24" onclick="placeAnswer('c24')"></td>
+    </tr>
+</table>
+
+<div id="options">
+    <div id="d1" class="button" onclick="selectAnswer('d1')">Defendant</div>
+    <div id="d2" class="button" onclick="selectAnswer('d2')">Prosecution</div>
+    <div id="d3" class="button" onclick="selectAnswer('d3')">Plaintiff</div>
+    <div id="d4" class="button" onclick="selectAnswer('d4')">Punishment for wrongdoing</div>
+    <div id="d5" class="button" onclick="selectAnswer('d5')">Compensation or remedy</div>
+    <div id="d6" class="button" onclick="selectAnswer('d6')">Beyond a reasonable doubt</div>
+    <div id="d7" class="button" onclick="selectAnswer('d7')">Balance of probabilities</div>
+    <div id="d8" class="button" onclick="selectAnswer('d8')">Imprisonment, fines</div>
+    <div id="d9" class="button" onclick="selectAnswer('d9')">Damages, injunctions</div>
+    <div id="d10" class="button" onclick="selectAnswer('d10')">Right to a fair trial, legal counsel</div>
+    <div id="d11" class="button" onclick="selectAnswer('d11')">Right to defend the claim</div>
+    <div id="d12" class="button" onclick="selectAnswer('d12')">Offense against society</div>
+    <div id="d13" class="button" onclick="selectAnswer('d13')">Harm to individual or entity</div>
+    <div id="d14" class="button" onclick="selectAnswer('d14')">Jail, fines, probation</div>
+    <div id="d15" class="button" onclick="selectAnswer('d15')">Monetary damages, injunctions</div>
+    <div id="d16" class="button" onclick="selectAnswer('d16')">Appeals for both sides</div>
+    <div id="d17" class="button" onclick="selectAnswer('d17')">Legal errors</div>
+    <div id="d18" class="button" onclick="selectAnswer('d18')">Public proceedings</div>
+    <div id="d19" class="button" onclick="selectAnswer('d19')">Private disputes</div>
+    <div id="d20" class="button" onclick="selectAnswer('d20')">Criminal record, loss of rights</div>
+    <div id="d21" class="button" onclick="selectAnswer('d21')">Financial/equitable remedies</div>
+</div>
+
+<script>
+    var selectedAnswer = "";
+
+    function selectAnswer(id) {
+        selectedAnswer = id;
+        var options = document.querySelectorAll('.button');
+        options.forEach(option => option.style.border = '1px solid #ccc'); // Reset borders
+        document.getElementById(id).style.border = '2px solid blue'; // Highlight selected button
+    }
+
+    function placeAnswer(targetId) {
+        if (selectedAnswer === "") {
+            alert("Please select an answer first.");
+            return;
+        }
+
+        var element = document.getElementById(selectedAnswer);
+        var target = document.getElementById(targetId);
+
+        if (checkAnswer(targetId, selectedAnswer)) {
+            target.innerHTML = element.innerHTML;
+            target.className = "correct";
+        } else {
+            target.innerHTML = element.innerHTML;
+            target.className = "incorrect";
+        }
+
+        // Deselect answer after placing
+        selectedAnswer = "";
+        var options = document.querySelectorAll('.button');
+        options.forEach(option => option.style.border = '1px solid #ccc'); // Reset borders
+    }
+
+    function checkAnswer(targetId, answerId) {
+        const correctAnswers = {
+            c1: "d1",
+            c2: "d1",
+            c3: "d2",
+            c4: "d3",
+            c5: "d4",
+            c6: "d5",
+            c7: "d6",
+            c8: "d7",
+            c9: "d6",
+            c10: "d7",
+            c11: "d8",
+            c12: "d9",
+            c13: "d10",
+            c14: "d11",
+            c15: "d12",
+            c16: "d13",
+            c17: "d14",
+            c18: "d15",
+            c19: "d16",
+            c20: "d17",
+            c21: "d18",
+            c22: "d19",
+            c23: "d20",
+            c24: "d21"
+        };
+        return correctAnswers[targetId] === answerId;
+    }
+</script>
+
+</body>
+</html>
