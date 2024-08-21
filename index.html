@@ -3,280 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criminal vs. Civil Law Game</title>
+    <title>Interactive Criminal vs Civil Law Table</title>
     <style>
         body {
             font-family: 'Open Sans', sans-serif;
-            font-size: 14px;
             background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
             padding: 20px;
+            line-height: 1.6;
         }
-
-        .container {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            gap: 20px;
-        }
-
-        table {
-            width: 70%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
+        #table-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
             background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            overflow: hidden;
         }
-
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
         th, td {
-            border: 1px solid #ccc;
-            padding: 15px;
-            text-align: center;
-            transition: background-color 0.2s;
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
         }
-
         th {
             background-color: #333;
             color: white;
-            font-size: 16px;
         }
-
         td {
             background-color: #fafafa;
-            min-width: 120px;
         }
-
-        .aspect {
-            width: 200px;
+        .hidden {
+            display: none;
         }
-
-        .button-container {
+        .buttons {
+            margin-top: 20px;
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
             gap: 10px;
+            flex-wrap: wrap;
         }
-
         .button {
             background-color: #2196F3;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 15px;
             cursor: pointer;
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s, opacity 0.3s;
         }
-
         .button:hover {
             background-color: #1976D2;
         }
-
-        .correct {
+        .button.correct {
             background-color: green;
             color: white;
         }
-
-        .incorrect {
+        .button.incorrect {
             background-color: red;
             color: white;
-        }
-
-        .jiggle {
-            animation: jiggle 0.3s ease-in-out;
-        }
-
-        @keyframes jiggle {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            50% { transform: translateX(5px); }
-            75% { transform: translateX(-5px); }
-            100% { transform: translateX(0); }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div id="options" class="button-container">
-        <div id="d1" class="button" draggable="true" ondragstart="drag(event)">Defendant</div>
-        <div id="d2" class="button" draggable="true" ondragstart="drag(event)">Prosecution</div>
-        <div id="d3" class="button" draggable="true" ondragstart="drag(event)">Plaintiff</div>
-        <div id="d4" class="button" draggable="true" ondragstart="drag(event)">Punishment for wrongdoing</div>
-        <div id="d5" class="button" draggable="true" ondragstart="drag(event)">Compensation or remedy</div>
-        <div id="d6" class="button" draggable="true" ondragstart="drag(event)">Beyond a reasonable doubt</div>
-        <div id="d7" class="button" draggable="true" ondragstart="drag(event)">Balance of probabilities</div>
-        <div id="d8" class="button" draggable="true" ondragstart="drag(event)">Imprisonment, fines</div>
-        <div id="d9" class="button" draggable="true" ondragstart="drag(event)">Damages, injunctions</div>
-        <div id="d10" class="button" draggable="true" ondragstart="drag(event)">Right to a fair trial, legal counsel</div>
-        <div id="d11" class="button" draggable="true" ondragstart="drag(event)">Right to defend the claim</div>
-        <div id="d12" class="button" draggable="true" ondragstart="drag(event)">Offense against society</div>
-        <div id="d13" class="button" draggable="true" ondragstart="drag(event)">Harm to individual or entity</div>
-        <div id="d14" class="button" draggable="true" ondragstart="drag(event)">Jail, fines, probation</div>
-        <div id="d15" class="button" draggable="true" ondragstart="drag(event)">Monetary damages, injunctions</div>
-        <div id="d16" class="button" draggable="true" ondragstart="drag(event)">Appeals for both sides</div>
-        <div id="d17" class="button" draggable="true" ondragstart="drag(event)">Legal errors</div>
-        <div id="d18" class="button" draggable="true" ondragstart="drag(event)">Public proceedings</div>
-        <div id="d19" class="button" draggable="true" ondragstart="drag(event)">Private disputes</div>
-        <div id="d20" class="button" draggable="true" ondragstart="drag(event)">Criminal record, loss of rights</div>
-        <div id="d21" class="button" draggable="true" ondragstart="drag(event)">Financial/equitable remedies</div>
-    </div>
-
+<div id="table-container">
     <table>
         <tr>
-            <th class="aspect">Aspect</th>
+            <th>Aspect</th>
             <th>Criminal Law</th>
             <th>Civil Law</th>
         </tr>
-        <tr>
-            <td class="aspect">Who is Accused?</td>
-            <td id="c1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-            <td id="c2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <tr id="row1">
+            <td>Who is Accused?</td>
+            <td id="criminal1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            <td id="civil1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
-        <tr>
-            <td class="aspect">Who Brings the Case?</td>
-            <td id="c3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-            <td id="c4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <tr id="row2" class="hidden">
+            <td>Who Brings the Case Forward?</td>
+            <td id="criminal2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            <td id="civil2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
-        <tr>
-            <td class="aspect">Purpose of the Case</td>
-            <td id="c5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-            <td id="c6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <tr id="row3" class="hidden">
+            <td>Purpose of the Case</td>
+            <td id="criminal3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            <td id="civil3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
-        <tr>
-            <td class="aspect">Burden of Proof</td>
-            <td id="c7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-            <td id="c8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <tr id="row4" class="hidden">
+            <td>Burden of Proof</td>
+            <td id="criminal4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            <td id="civil4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
-        <tr>
-            <td class="aspect">Standard of Evidence</td>
-            <td id="c9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-            <td id="c10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <tr id="row5" class="hidden">
+            <td>Potential Outcomes</td>
+            <td id="criminal5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            <td id="civil5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
-        <tr>
-            <td class="aspect">Potential Outcomes</td>
-            <td id="c11" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-            <td id="c12" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <tr id="row6" class="hidden">
+            <td>Standard of Evidence</td>
+            <td id="criminal6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            <td id="civil6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
-        <tr>
-            <td class="aspect">Rights of the Defendant</td>
-            <td id="c13" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-            <td id="c14" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <tr id="row7" class="hidden">
+            <td>Example of Penalties/Remedies</td>
+            <td id="criminal7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            <td id="civil7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
-        <tr>
-            <td class="aspect">Nature of the Harm</td>
-            <td id="c15" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-            <td id="c16" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-        </tr>
-        <tr>
-            <td class="aspect">Example of Penalties/Remedies</td>
-            <td id="c17" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-            <td id="c18" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-        </tr>
-        <tr>
-            <td class="aspect">Appeals Process</td>
-            <td id="c19" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-            <td id="c20" ondrop="drop(event)" on
-        <tr>
-            <td class="aspect">Public vs. Private</td>
-            <td id="c21" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-            <td id="c22" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-        </tr>
-        <tr>
-            <td class="aspect">Impact of Outcome</td>
-            <td id="c23" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-            <td id="c24" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+        <tr id="row8" class="hidden">
+            <td>Impact of Outcome</td>
+            <td id="criminal8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            <td id="civil8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
     </table>
+
+    <div class="buttons">
+        <div id="button1" class="button" draggable="true" ondragstart="drag(event)">The individual or entity accused of committing a crime (defendant)</div>
+        <div id="button2" class="button" draggable="true" ondragstart="drag(event)">The individual or entity accused of causing harm or loss (defendant)</div>
+        <div id="button3" class="button" draggable="true" ondragstart="drag(event)">The state or government (prosecution)</div>
+        <div id="button4" class="button" draggable="true" ondragstart="drag(event)">The individual or entity that suffered harm (plaintiff/claimant)</div>
+        <div id="button5" class="button" draggable="true" ondragstart="drag(event)">To determine if the defendant violated a law and should be punished</div>
+        <div id="button6" class="button" draggable="true" ondragstart="drag(event)">To resolve disputes and provide compensation or relief for harm</div>
+        <div id="button7" class="button" draggable="true" ondragstart="drag(event)">"Beyond a reasonable doubt" - the prosecution must prove the defendant's guilt</div>
+        <div id="button8" class="button" draggable="true" ondragstart="drag(event)">"Balance of probabilities" - the plaintiff must prove their case is more likely true</div>
+        <div id="button9" class="button" draggable="true" ondragstart="drag(event)">Punishment (e.g., imprisonment, fines, community service)</div>
+        <div id="button10" class="button" draggable="true" ondragstart="drag(event)">Compensation (e.g., monetary damages, injunctions)</div>
+        <div id="button11" class="button" draggable="true" ondragstart="drag(event)">Must be clear and convincing evidence to remove reasonable doubt</div>
+        <div id="button12" class="button" draggable="true" ondragstart="drag(event)">Preponderance of evidence, meaning more likely than not</div>
+        <div id="button13" class="button" draggable="true" ondragstart="drag(event)">Jail time, community service, fines, probation</div>
+        <div id="button14" class="button" draggable="true" ondragstart="drag(event)">Monetary compensation, specific performance, injunctions</div>
+        <div id="button15" class="button" draggable="true" ondragstart="drag(event)">A criminal conviction can lead to a criminal record and loss of certain rights (e.g., voting, owning firearms)</div>
+        <div id="button16" class="button" draggable="true" ondragstart="drag(event)">A civil judgment typically results in financial or equitable remedies without criminal consequences</div>
+    </div>
 </div>
 
-<audio id="correctSound" src="https://www.myinstants.com/media/sounds/correct-answer-ding.mp3"></audio>
-<audio id="fartSound" src="https://www.myinstants.com/media/sounds/fart.mp3"></audio>
-<audio id="buzzerSound" src="https://www.myinstants.com/media/sounds/wrong-answer-sound-effect.mp3"></audio>
-<audio id="wrongVoiceSound" src="https://www.myinstants.com/media/sounds/wrong.mp3"></audio>
-
 <script>
-    let wrongAttempts = 0;
-
-    function allowDrop(ev) {
-        ev.preventDefault();
+    function allowDrop(event) {
+        event.preventDefault();
     }
 
-    function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
+    function drag(event) {
+        event.dataTransfer.setData("text", event.target.id);
     }
 
-    function drop(ev) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        var element = document.getElementById(data);
-        var target = ev.target;
-
-        if (target.tagName === "TD" && target.innerHTML === "") {
-            if (checkAnswer(target.id, data)) {
-                target.appendChild(element);
-                element.classList.add('jiggle');
-                document.getElementById('correctSound').play();
-
-                setTimeout(function () {
-                    element.classList.remove('jiggle');
-                }, 500);
-
-                target.className = "correct";
-            } else {
-                playWrongSound();
-                element.style.opacity = 0;
-                setTimeout(function() {
-                    element.style.opacity = 1;
-                    document.getElementById('options').appendChild(element);
-                }, 500);
-            }
+    function drop(event) {
+        event.preventDefault();
+        var data = event.dataTransfer.getData("text");
+        var draggedElement = document.getElementById(data);
+        if (event.target.id.includes("criminal") && (data === "button1" || data === "button3" || data === "button5" || data === "button7" || data === "button9" || data === "button11" || data === "button13" || data === "button15")) {
+            event.target.appendChild(draggedElement);
+            draggedElement.classList.add("correct");
+            showNextRow(event.target.id);
+        } else if (event.target.id.includes("civil") && (data === "button2" || data === "button4" || data === "button6" || data === "button8" || data === "button10" || data === "button12" || data === "button14" || data === "button16")) {
+            event.target.appendChild(draggedElement);
+            draggedElement.classList.add("correct");
+            showNextRow(event.target.id);
+        } else {
+            draggedElement.classList.add("incorrect");
+            setTimeout(function() {
+                draggedElement.classList.remove("incorrect");
+            }, 1000);
         }
     }
 
-    function playWrongSound() {
-        if (wrongAttempts === 0) {
-            document.getElementById('fartSound').play();
-        } else if (wrongAttempts === 1) {
-            document.getElementById('buzzerSound').play();
-        } else if (wrongAttempts === 2) {
-            document.getElementById('wrongVoiceSound').play();
+    function showNextRow(currentId) {
+        switch (currentId) {
+            case "criminal1":
+            case "civil1":
+                document.getElementById("row2").classList.remove("hidden");
+                break;
+            case "criminal2":
+            case "civil2":
+                document.getElementById("row3").classList.remove("hidden");
+                break;
+            case "criminal3":
+            case "civil3":
+                document.getElementById("row4").classList.remove("hidden");
+                break;
+            case "criminal4":
+            case "civil4":
+                document.getElementById("row5").classList.remove("hidden");
+                break;
+            case "criminal5":
+            case "civil5":
+                document.getElementById("row6").classList.remove("hidden");
+                break;
+            case "criminal6":
+            case "civil6":
+                document.getElementById("row7").classList.remove("hidden");
+                break;
+            case "criminal7":
+            case "civil7":
+                document.getElementById("row8").classList.remove("hidden");
+                break;
         }
-        wrongAttempts++;
-    }
-
-    function checkAnswer(targetId, dragId) {
-        const correctAnswers = {
-            c1: "d1",
-            c2: "d1",
-            c3: "d2",
-            c4: "d3",
-            c5: "d4",
-            c6: "d5",
-            c7: "d6",
-            c8: "d7",
-            c9: "d6",
-            c10: "d7",
-            c11: "d8",
-            c12: "d9",
-            c13: "d10",
-            c14: "d11",
-            c15: "d12",
-            c16: "d13",
-            c17: "d14",
-            c18: "d15",
-            c19: "d16",
-            c20: "d17",
-            c21: "d18",
-            c22: "d19",
-            c23: "d20",
-            c24: "d21"
-        };
-        return correctAnswers[targetId] === dragId;
     }
 </script>
 
