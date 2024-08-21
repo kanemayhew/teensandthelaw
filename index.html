@@ -68,14 +68,19 @@
             justify-content: center;
         }
         .button {
-            background-color: #007BFF;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 10px 15px;
             cursor: pointer;
-            border-radius: 8px;
+            border-radius: 50px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
+            font-size: 14px;
+            text-align: center;
+            min-width: 150px;
+            max-width: 200px;
+            word-wrap: break-word;
         }
         .button:hover {
             background-color: #0056b3;
@@ -113,12 +118,12 @@
             <td id="civil1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
         <tr id="row2" class="hidden">
-            <td>Who Brings the Case Forward?</td>
+            <td>Who Brings the Case?</td>
             <td id="criminal2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             <td id="civil2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
         <tr id="row3" class="hidden">
-            <td>Purpose of the Case</td>
+            <td>Case Purpose</td>
             <td id="criminal3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             <td id="civil3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
@@ -128,7 +133,7 @@
             <td id="civil4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
         <tr id="row5" class="hidden">
-            <td>Potential Outcomes</td>
+            <td>Outcomes</td>
             <td id="criminal5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             <td id="civil5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
@@ -138,34 +143,34 @@
             <td id="civil6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
         <tr id="row7" class="hidden">
-            <td>Example of Penalties/Remedies</td>
+            <td>Penalties/Remedies</td>
             <td id="criminal7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             <td id="civil7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
         <tr id="row8" class="hidden">
-            <td>Impact of Outcome</td>
+            <td>Outcome Impact</td>
             <td id="criminal8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             <td id="civil8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
     </table>
 
-    <div class="buttons">
-        <div id="button1" class="button" draggable="true" ondragstart="drag(event)">The individual or entity accused of committing a crime (defendant)</div>
-        <div id="button2" class="button" draggable="true" ondragstart="drag(event)">The individual or entity accused of causing harm or loss (defendant)</div>
-        <div id="button3" class="button" draggable="true" ondragstart="drag(event)">The state or government (prosecution)</div>
-        <div id="button4" class="button" draggable="true" ondragstart="drag(event)">The individual or entity that suffered harm (plaintiff/claimant)</div>
-        <div id="button5" class="button" draggable="true" ondragstart="drag(event)">To determine if the defendant violated a law and should be punished</div>
-        <div id="button6" class="button" draggable="true" ondragstart="drag(event)">To resolve disputes and provide compensation or relief for harm</div>
-        <div id="button7" class="button" draggable="true" ondragstart="drag(event)">"Beyond a reasonable doubt" - the prosecution must prove the defendant's guilt</div>
-        <div id="button8" class="button" draggable="true" ondragstart="drag(event)">"Balance of probabilities" - the plaintiff must prove their case is more likely true</div>
-        <div id="button9" class="button" draggable="true" ondragstart="drag(event)">Punishment (e.g., imprisonment, fines, community service)</div>
-        <div id="button10" class="button" draggable="true" ondragstart="drag(event)">Compensation (e.g., monetary damages, injunctions)</div>
-        <div id="button11" class="button" draggable="true" ondragstart="drag(event)">Must be clear and convincing evidence to remove reasonable doubt</div>
-        <div id="button12" class="button" draggable="true" ondragstart="drag(event)">Preponderance of evidence, meaning more likely than not</div>
-        <div id="button13" class="button" draggable="true" ondragstart="drag(event)">Jail time, community service, fines, probation</div>
-        <div id="button14" class="button" draggable="true" ondragstart="drag(event)">Monetary compensation, specific performance, injunctions</div>
-        <div id="button15" class="button" draggable="true" ondragstart="drag(event)">A criminal conviction can lead to a criminal record and loss of certain rights (e.g., voting, owning firearms)</div>
-        <div id="button16" class="button" draggable="true" ondragstart="drag(event)">A civil judgment typically results in financial or equitable remedies without criminal consequences</div>
+    <div id="buttons-container" class="buttons">
+        <div id="button1" class="button" draggable="true" ondragstart="drag(event)">Crime accused (defendant)</div>
+        <div id="button2" class="button" draggable="true" ondragstart="drag(event)">Harm accused (defendant)</div>
+        <div id="button3" class="button" draggable="true" ondragstart="drag(event)">State/Govt (prosecution)</div>
+        <div id="button4" class="button" draggable="true" ondragstart="drag(event)">Harmed party (plaintiff)</div>
+        <div id="button5" class="button" draggable="true" ondragstart="drag(event)">Punish law violation</div>
+        <div id="button6" class="button" draggable="true" ondragstart="drag(event)">Resolve harm disputes</div>
+        <div id="button7" class="button" draggable="true" ondragstart="drag(event)">Beyond reasonable doubt</div>
+        <div id="button8" class="button" draggable="true" ondragstart="drag(event)">Balance of probabilities</div>
+        <div id="button9" class="button" draggable="true" ondragstart="drag(event)">Punishment (e.g., fines)</div>
+        <div id="button10" class="button" draggable="true" ondragstart="drag(event)">Compensation</div>
+        <div id="button11" class="button" draggable="true" ondragstart="drag(event)">Clear, convincing evidence</div>
+        <div id="button12" class="button" draggable="true" ondragstart="drag(event)">More likely than not</div>
+        <div id="button13" class="button" draggable="true" ondragstart="drag(event)">Jail, fines, probation</div>
+        <div id="button14" class="button" draggable="true" ondragstart="drag(event)">Monetary remedies</div>
+        <div id="button15" class="button" draggable="true" ondragstart="drag(event)">Criminal record</div>
+        <div id="button16" class="button" draggable="true" ondragstart="drag(event)">Financial/equitable</div>
     </div>
 </div>
 
@@ -237,6 +242,15 @@
                 break;
         }
     }
+
+    function shuffleButtons() {
+        var container = document.getElementById("buttons-container");
+        for (var i = container.children.length; i >= 0; i--) {
+            container.appendChild(container.children[Math.random() * i | 0]);
+        }
+    }
+
+    window.onload = shuffleButtons;
 </script>
 
 </body>
