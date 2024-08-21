@@ -33,8 +33,9 @@
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 16px;
+            padding: 20px;
             text-align: left;
+            width: 33%;
         }
         th {
             background-color: #007BFF;
@@ -46,19 +47,8 @@
         td {
             background-color: #f9f9f9;
             color: #555;
-        }
-        tr:not(:first-child) {
-            transition: all 0.3s ease-in-out;
-        }
-        .hidden {
-            opacity: 0;
-            height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease-in-out;
-        }
-        .shown {
-            opacity: 1;
-            height: auto;
+            min-height: 50px;
+            vertical-align: middle;
         }
         .buttons {
             margin-top: 20px;
@@ -68,37 +58,44 @@
             justify-content: center;
         }
         .button {
-            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            background: #007BFF;
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 10px 20px;
             cursor: pointer;
-            border-radius: 50px;
+            border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
+            transition: transform 0.2s;
             font-size: 14px;
             text-align: center;
-            min-width: 150px;
-            max-width: 200px;
+            width: 220px;
             word-wrap: break-word;
         }
         .button:hover {
             background-color: #0056b3;
             transform: translateY(-2px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
         }
         .button.correct {
             background-color: #28a745;
             color: white;
-            transform: scale(1.05);
+            animation: jiggle 0.2s ease-in-out;
         }
         .button.incorrect {
             background-color: #dc3545;
             color: white;
+            animation: shake 0.2s ease-in-out;
         }
-        .button.correct:hover, .button.incorrect:hover {
-            transform: none;
-            box-shadow: none;
+        @keyframes jiggle {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
         }
     </style>
 </head>
@@ -112,43 +109,43 @@
             <th>Criminal Law</th>
             <th>Civil Law</th>
         </tr>
-        <tr id="row1">
+        <tr>
             <td>Who is Accused?</td>
             <td id="criminal1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             <td id="civil1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
-        <tr id="row2" class="hidden">
+        <tr>
             <td>Who Brings the Case?</td>
             <td id="criminal2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             <td id="civil2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
-        <tr id="row3" class="hidden">
-            <td>Case Purpose</td>
+        <tr>
+            <td>Purpose of the Case</td>
             <td id="criminal3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             <td id="civil3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
-        <tr id="row4" class="hidden">
+        <tr>
             <td>Burden of Proof</td>
             <td id="criminal4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             <td id="civil4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
-        <tr id="row5" class="hidden">
-            <td>Outcomes</td>
+        <tr>
+            <td>Potential Outcomes</td>
             <td id="criminal5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             <td id="civil5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
-        <tr id="row6" class="hidden">
+        <tr>
             <td>Standard of Evidence</td>
             <td id="criminal6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             <td id="civil6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
-        <tr id="row7" class="hidden">
+        <tr>
             <td>Penalties/Remedies</td>
             <td id="criminal7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             <td id="civil7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
-        <tr id="row8" class="hidden">
-            <td>Outcome Impact</td>
+        <tr>
+            <td>Impact of Outcome</td>
             <td id="criminal8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
             <td id="civil8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
         </tr>
@@ -187,59 +184,22 @@
         event.preventDefault();
         var data = event.dataTransfer.getData("text");
         var draggedElement = document.getElementById(data);
-        if (event.target.id.includes("criminal") && (data === "button1" || data === "button3" || data === "button5" || data === "button7" || data === "button9" || data === "button11" || data === "button13" || data === "button15")) {
-            event.target.appendChild(draggedElement);
-            draggedElement.classList.add("correct");
-            showNextRow(event.target.id);
-        } else if (event.target.id.includes("civil") && (data === "button2" || data === "button4" || data === "button6" || data === "button8" || data === "button10" || data === "button12" || data === "button14" || data === "button16")) {
-            event.target.appendChild(draggedElement);
-            draggedElement.classList.add("correct");
-            showNextRow(event.target.id);
-        } else {
-            draggedElement.classList.add("incorrect");
-            setTimeout(function() {
-                draggedElement.classList.remove("incorrect");
-            }, 1000);
-        }
-    }
 
-    function showNextRow(currentId) {
-        switch (currentId) {
-            case "criminal1":
-            case "civil1":
-                document.getElementById("row2").classList.remove("hidden");
-                document.getElementById("row2").classList.add("shown");
-                break;
-            case "criminal2":
-            case "civil2":
-                document.getElementById("row3").classList.remove("hidden");
-                document.getElementById("row3").classList.add("shown");
-                break;
-            case "criminal3":
-            case "civil3":
-                document.getElementById("row4").classList.remove("hidden");
-                document.getElementById("row4").classList.add("shown");
-                break;
-            case "criminal4":
-            case "civil4":
-                document.getElementById("row5").classList.remove("hidden");
-                document.getElementById("row5").classList.add("shown");
-                break;
-            case "criminal5":
-            case "civil5":
-                document.getElementById("row6").classList.remove("hidden");
-                document.getElementById("row6").classList.add("shown");
-                break;
-            case "criminal6":
-            case "civil6":
-                document.getElementById("row7").classList.remove("hidden");
-                document.getElementById("row7").classList.add("shown");
-                break;
-            case "criminal7":
-            case "civil7":
-                document.getElementById("row8").classList.remove("hidden");
-                document.getElementById("row8").classList.add("shown");
-                break;
+        if (event.target.children.length === 0) { // Check if the target cell is empty
+            if (event.target.id.includes("criminal") && (data === "button1" || data === "button3" || data === "button5" || data === "button7" || data === "button9" || data === "button11" || data === "button13" || data === "button15")) {
+                event.target.appendChild(draggedElement);
+                draggedElement.classList.add("correct");
+                draggedElement.draggable = false;
+            } else if (event.target.id.includes("civil") && (data === "button2" || data === "button4" || data === "button6" || data === "button8" || data === "button10" || data === "button12" || data === "button14" || data === "button16")) {
+                event.target.appendChild(draggedElement);
+                draggedElement.classList.add("correct");
+                draggedElement.draggable = false;
+            } else {
+                draggedElement.classList.add("incorrect");
+                setTimeout(function() {
+                    draggedElement.classList.remove("incorrect");
+                }, 1000);
+            }
         }
     }
 
