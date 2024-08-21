@@ -10,66 +10,97 @@
             background-color: #f4f4f9;
             padding: 20px;
             line-height: 1.6;
+            color: #333;
         }
         #table-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #444;
+            margin-bottom: 20px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-bottom: 20px;
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 12px;
+            padding: 16px;
             text-align: left;
         }
         th {
-            background-color: #333;
+            background-color: #007BFF;
             color: white;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
         }
         td {
-            background-color: #fafafa;
+            background-color: #f9f9f9;
+            color: #555;
+        }
+        tr:not(:first-child) {
+            transition: all 0.3s ease-in-out;
         }
         .hidden {
-            display: none;
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        .shown {
+            opacity: 1;
+            height: auto;
         }
         .buttons {
             margin-top: 20px;
             display: flex;
-            gap: 10px;
+            gap: 15px;
             flex-wrap: wrap;
+            justify-content: center;
         }
         .button {
-            background-color: #2196F3;
+            background-color: #007BFF;
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 12px 20px;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s, opacity 0.3s;
+            transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
         }
         .button:hover {
-            background-color: #1976D2;
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
         }
         .button.correct {
-            background-color: green;
+            background-color: #28a745;
             color: white;
+            transform: scale(1.05);
         }
         .button.incorrect {
-            background-color: red;
+            background-color: #dc3545;
             color: white;
+        }
+        .button.correct:hover, .button.incorrect:hover {
+            transform: none;
+            box-shadow: none;
         }
     </style>
 </head>
 <body>
 
 <div id="table-container">
+    <h1>Comparison of Criminal and Civil Law</h1>
     <table>
         <tr>
             <th>Aspect</th>
@@ -172,30 +203,37 @@
             case "criminal1":
             case "civil1":
                 document.getElementById("row2").classList.remove("hidden");
+                document.getElementById("row2").classList.add("shown");
                 break;
             case "criminal2":
             case "civil2":
                 document.getElementById("row3").classList.remove("hidden");
+                document.getElementById("row3").classList.add("shown");
                 break;
             case "criminal3":
             case "civil3":
                 document.getElementById("row4").classList.remove("hidden");
+                document.getElementById("row4").classList.add("shown");
                 break;
             case "criminal4":
             case "civil4":
                 document.getElementById("row5").classList.remove("hidden");
+                document.getElementById("row5").classList.add("shown");
                 break;
             case "criminal5":
             case "civil5":
                 document.getElementById("row6").classList.remove("hidden");
+                document.getElementById("row6").classList.add("shown");
                 break;
             case "criminal6":
             case "civil6":
                 document.getElementById("row7").classList.remove("hidden");
+                document.getElementById("row7").classList.add("shown");
                 break;
             case "criminal7":
             case "civil7":
                 document.getElementById("row8").classList.remove("hidden");
+                document.getElementById("row8").classList.add("shown");
                 break;
         }
     }
